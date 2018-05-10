@@ -1,12 +1,15 @@
 
-<%@page contentType="text/html" pageEncoding="windows-1251"%>
+<%@page contentType="text/html" language = "java"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
-        <title>JSP Page</title>
+        <title>Store App</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h3>App from Anton</h3>
+		<br/>
+		<a href="/transactions" target="_blank">Transactions list</a>
+		<br/>
     </body>
 </html>

@@ -6,6 +6,7 @@
 package ru.feel.queststore.service;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import ru.feel.queststore.dao.TransactionDao;
 import ru.feel.queststore.model.Transaction;
@@ -16,31 +17,40 @@ import ru.feel.queststore.model.Transaction;
  */
 @Service
 public class TransactionServImpl implements TransactionService{
-	private TransactionDao transDao;
+    private TransactionDao transactionDao;
 
-	@Override
-	public void addTransaction(Transaction trans) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    @Override
+	@Transactional
+    public void addTransaction(Transaction transaction) {
+		this.transactionDao.addTransaction(transaction);
+    }
+
+    @Override
+	@Transactional
+    public void updateTransaction(Transaction transaction) {
+		this.transactionDao.updateTransaction(transaction);
+    }
+
+    @Override
+	@Transactional
+    public void removeTransaction(int id) {
+		this.transactionDao.removeTransaction(id);
+    }
+
+    @Override
+	@Transactional
+    public Transaction getTransactionById(int id) {		
+		return this.transactionDao.getTransById(id);
+    }
+
+    @Override
+	@Transactional
+    public List<Transaction> listTransaction() {
+		return this.transactionDao.listTranses();
 	}
 
-	@Override
-	public void updateTransaction(Transaction trans) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	@Override
-	public void removeTransaction(int id) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	@Override
-	public Transaction getTransactionById(int id) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-
-	@Override
-	public List<Transaction> listTransaction() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
+    public void setTransactionDao(TransactionDao transactionDao) {
+        this.transactionDao = transactionDao;
+    }
 }
 

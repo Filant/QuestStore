@@ -75,4 +75,15 @@ public class Transaction {
     public void setDatetime(String datetime) {
         this.datetime = datetime;
     }
+
+	@Override
+	public String toString() {
+		return "Transaction{" + "id=" + id + ", "
+				+ "store_id=" + store_id + ", "
+				+ "product_id=" + product_id + ", "
+				+ "quantity=" + quantity + ", "
+				+ "value=" + value + ", "
+				+ "datetime=" + datetime + '}';
+	}
+	
 }

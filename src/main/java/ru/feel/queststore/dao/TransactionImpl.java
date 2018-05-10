@@ -19,6 +19,7 @@ import ru.feel.queststore.model.Transaction;
  */
 @Repository
 public class TransactionImpl implements TransactionDao{
+	
 	private static final Logger logger = LoggerFactory.getLogger(TransactionImpl.class);
 	private SessionFactory sessionFactory;
 
@@ -28,34 +29,34 @@ public class TransactionImpl implements TransactionDao{
 
 
 	@Override
-	public void addTransaction(Transaction trans) {
+	public void addTransaction(Transaction transaction) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.persist(trans);
-		logger.info("Transaction successfuly added: " + trans);
+		session.persist(transaction);
+		logger.info("Transaction successfuly added: " + transaction);
 	}
 
 	@Override
-	public void updateTransaction(Transaction trans) {
+	public void updateTransaction(Transaction transaction) {
 		Session session = this.sessionFactory.getCurrentSession();
-		session.update(trans);
-		logger.info("Transaction successfuly update: " + trans);	}
+		session.update(transaction);
+		logger.info("Transaction successfuly update: " + transaction);	}
 
 	@Override
 	public void removeTransaction(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Transaction trans = (Transaction) session.load(Transaction.class, new Integer(id));
-		if(trans != null){
-			session.delete(trans);
-			logger.info("Transaction successfuly deleted: " + trans);
+		Transaction transaction = (Transaction) session.load(Transaction.class, new Integer(id));
+		if(transaction != null){
+			session.delete(transaction);
+			logger.info("Transaction successfuly deleted: " + transaction);
 		}			
 	}
 
 	@Override
 	public Transaction getTransById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Transaction trans = (Transaction) session.load(Transaction.class, new Integer(id));
-		logger.info("Transaction successfuly loaded: " + trans);
-		return trans;
+		Transaction transaction = (Transaction) session.load(Transaction.class, new Integer(id));
+		logger.info("Transaction successfuly loaded: " + transaction);
+		return transaction;
 	}
 
 	@Override
@@ -64,8 +65,8 @@ public class TransactionImpl implements TransactionDao{
 		Session session = this.sessionFactory.getCurrentSession();
 		List<Transaction> listTrans = session.createQuery("from TRANSACTIONS").list();
 		
-		for(Transaction trans : listTrans){
-			logger.info("Transaction info: " + trans);
+		for(Transaction transaction : listTrans){
+			logger.info("Transaction info: " + transaction);
 		}
 		return listTrans;
 	}

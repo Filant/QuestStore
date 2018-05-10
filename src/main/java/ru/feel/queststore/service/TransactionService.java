@@ -10,13 +10,13 @@ import ru.feel.queststore.model.Transaction;
 
 /**
  *
- * @author Ростислав
+ * @author Anton
  */
 public interface TransactionService {
 	
-	public void addTransaction(Transaction trans);
+	public void addTransaction(Transaction transaction);
 	
-	public void updateTransaction(Transaction trans);
+	public void updateTransaction(Transaction transaction);
 	
 	public void removeTransaction(int id);
 	
