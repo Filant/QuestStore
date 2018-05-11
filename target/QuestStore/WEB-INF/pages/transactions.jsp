@@ -62,18 +62,18 @@
             <th width="120">Prodcut_id</th>
             <th width="120">Quantity</th>
 			<th width="120">Value</th>
-			<th width="120">Date</th>
+			<th width="120">Datetime</th>
             <th width="60">Edit</th>
             <th width="60">Delete</th>
         </tr>
         <c:forEach items="${listTransaction}" var="transaction">
             <tr>
                 <td>${transaction.id}</td>
-                <td><a href="/transactiondata/${transaction.id}" target="_blank">${transaction.STORE_ID}</a></td>
-                <td>${transaction.PRODUCT_ID}</td>
-                <td>${transaction.QUANTITY}</td>
-				<td>${transaction.VALUE}</td>
-				<td>${transaction.DATEANDTIME}</td>
+                <td>${transaction.store_id}</td>
+                <td>${transaction.product_id}</td>
+                <td>${transaction.quantity}</td>
+				<td>${transaction.value}</td>
+				<td>${transaction.datetime}</td>
                 <td><a href="<c:url value='/edit/${transaction.id}'/>">Edit</a></td>
                 <td><a href="<c:url value='/remove/${transaction.id}'/>">Delete</a></td>
             </tr>
@@ -88,7 +88,7 @@
 
 <form:form action="${addAction}" commandName="transaction">
     <table>
-        <c:if test="${!empty book.bookTitle}">
+        <c:if test="${!empty transaction.store_id}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -103,43 +103,63 @@
         </c:if>
         <tr>
             <td>
-                <form:label path="bookTitle">
-                    <spring:message text="Title"/>
+                <form:label path="store_id">
+                    <spring:message text="Store_id"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="bookTitle"/>
+                <form:input path="store_id"/>
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="bookAuthor">
-                    <spring:message text="Author"/>
+                <form:label path="product_id">
+                    <spring:message text="Product_id"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="bookAuthor"/>
+                <form:input path="product_id"/>
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="price">
-                    <spring:message text="Price"/>
+                <form:label path="quantity">
+                    <spring:message text="Quantity"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="price"/>
+                <form:input path="quantity"/>
+            </td>
+        </tr>
+		 <tr>
+            <td>
+                <form:label path="value">
+                    <spring:message text="Value"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="value"/>
+            </td>
+        </tr>
+		 <tr>
+            <td>
+                <form:label path="datetime">
+                    <spring:message text="Datetime"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="datetime"/>
             </td>
         </tr>
         <tr>
             <td colspan="2">
-                <c:if test="${!empty book.bookTitle}">
+                <c:if test="${!empty transactions.product_id}">
                     <input type="submit"
-                           value="<spring:message text="Edit Book"/>"/>
+                           value="<spring:message text="Edit Transaction"/>"/>
                 </c:if>
-                <c:if test="${empty book.bookTitle}">
+                <c:if test="${empty transactions.product_id}">
                     <input type="submit"
-                           value="<spring:message text="Add Book"/>"/>
+                           value="<spring:message text="Add Transaction"/>"/>
                 </c:if>
             </td>
         </tr>

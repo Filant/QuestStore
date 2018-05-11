@@ -17,6 +17,6 @@ public interface TransactionDao {
 	public void updateTransaction(Transaction transaction);
 	public void removeTransaction(int id);
 	public Transaction getTransById(int id);
-	public List<Transaction> listTranses();
+	public List<Transaction> listTransaction();
     
 }

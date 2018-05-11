@@ -61,9 +61,9 @@ public class TransactionImpl implements TransactionDao{
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Transaction> listTranses() {
+	public List<Transaction> listTransaction() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Transaction> listTrans = session.createQuery("from TRANSACTIONS").list();
+		List<Transaction> listTrans = session.createQuery("from queststoredb.transactions").list();
 		
 		for(Transaction transaction : listTrans){
 			logger.info("Transaction info: " + transaction);

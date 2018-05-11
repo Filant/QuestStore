@@ -1,9 +1,7 @@
 
 <%@page contentType="text/html" language = "java"%>
-<!DOCTYPE html>
 <html>
     <head>
-        <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
         <title>Store App</title>
     </head>
     <body>

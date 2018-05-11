@@ -46,7 +46,7 @@ public class TransactionServImpl implements TransactionService{
     @Override
 	@Transactional
     public List<Transaction> listTransaction() {
-		return this.transactionDao.listTranses();
+		return this.transactionDao.listTransaction();
 	}
 
     public void setTransactionDao(TransactionDao transactionDao) {

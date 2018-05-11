@@ -57,10 +57,10 @@ public class TransactionController {
 	
 	@RequestMapping("edit/{id}")
 	public String editTransaction(@PathVariable("id") int id, Model model){
-		model.addAttribute("tarnsaction", this.transactionService.getTransactionById(id));
+		model.addAttribute("transaction", this.transactionService.getTransactionById(id));
 		model.addAttribute("listTransaction", this.transactionService.listTransaction());
 		
-		return "tarnsactions";
+		return "transactions";
 	}
 	
 	@RequestMapping("transactiondata/{id}")
