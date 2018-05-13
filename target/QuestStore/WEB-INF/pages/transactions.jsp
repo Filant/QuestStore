@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -47,7 +48,7 @@
     </style>
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
+<a href="../../QuestStore/index.jsp">Back to main menu</a>
 
 <br/>
 <br/>
@@ -69,13 +70,13 @@
         <c:forEach items="${listTransaction}" var="transaction">
             <tr>
                 <td>${transaction.id}</td>
-                <td><a href="/transactiondata/${transaction.id}" target="_blank">${transaction.STORE_ID}</a></td>
-                <td>${transaction.PRODUCT_ID}</td>
-                <td>${transaction.QUANTITY}</td>
-				<td>${transaction.VALUE}</td>
-				<td>${transaction.DATEANDTIME}</td>
-                <td><a href="<c:url value='/edit/${transaction.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${transaction.id}'/>">Delete</a></td>
+                <td><a href="transactiondata/${transaction.id}" target="_blank">${transaction.store_id}</a></td>
+                <td>${transaction.product_id}</td>
+                <td>${transaction.quantity}</td>
+				<td>${transaction.value}</td>
+				<td>${transaction.datetime}</td>
+                <td><a href="<c:url value='/editTransaction/${transaction.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/removeTransaction/${transaction.id}'/>">Delete</a></td>
             </tr>
         </c:forEach>
     </table>
@@ -88,7 +89,7 @@
 
 <form:form action="${addAction}" commandName="transaction">
     <table>
-        <c:if test="${!empty book.bookTitle}">
+        <c:if test="${!empty transaction.quantity}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -103,43 +104,55 @@
         </c:if>
         <tr>
             <td>
-                <form:label path="bookTitle">
-                    <spring:message text="Title"/>
+                <form:label path="store_id">
+                    <spring:message text="Store_id"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="bookTitle"/>
+                <form:input path="store_id"/>
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="bookAuthor">
-                    <spring:message text="Author"/>
+                <form:label path="product_id">
+                    <spring:message text="Product_id"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="bookAuthor"/>
+                <form:input path="product_id"/>
             </td>
         </tr>
         <tr>
             <td>
-                <form:label path="price">
-                    <spring:message text="Price"/>
+                <form:label path="quantity">
+                    <spring:message text="Quantity"/>
                 </form:label>
             </td>
             <td>
-                <form:input path="price"/>
+                <form:input path="quantity"/>
             </td>
         </tr>
+		<tr>
+            <td>
+                <form:label path="value">
+                    <spring:message text="Value"/>
+                </form:label>
+            </td>
+            <td>
+                <form:input path="value"/>
+            </td>
+        </tr>
+		
+		
         <tr>
             <td colspan="2">
-                <c:if test="${!empty book.bookTitle}">
+                <c:if test="${!empty book.quantity}">
                     <input type="submit"
-                           value="<spring:message text="Edit Book"/>"/>
+                           value="<spring:message text="Edit Transaction"/>"/>
                 </c:if>
-                <c:if test="${empty book.bookTitle}">
+                <c:if test="${empty book.quantity}">
                     <input type="submit"
-                           value="<spring:message text="Add Book"/>"/>
+                           value="<spring:message text="Add Transaction"/>"/>
                 </c:if>
             </td>
         </tr>

@@ -10,13 +10,17 @@ import ru.feel.queststore.model.Transaction;
 
 /**
  *
- * @author Ростислав
+ * @author Anton
  */
 public interface TransactionDao {
 	public void addTransaction(Transaction transaction);
+	
 	public void updateTransaction(Transaction transaction);
+	
 	public void removeTransaction(int id);
+	
 	public Transaction getTransById(int id);
+	
 	public List<Transaction> listTranses();
     
 }

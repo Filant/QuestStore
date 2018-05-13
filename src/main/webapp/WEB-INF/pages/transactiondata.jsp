@@ -54,17 +54,19 @@
 <table class="tg">
   <tr>
     <th width="80">ID</th>
-    <th width="120">Title</th>
-    <th width="120">Author</th>
-    <th width="120">Price</th>
+    <th width="120">Store_id</th>
+    <th width="120">Product_id</th>
+    <th width="120">Quantity</th>
+    <th width="120">Value</th>
+    <th width="120">Datetime</th>
   </tr>
   <tr>
-    <td>${transactions.id}</td>
-    <td>${transactions.store_id}</td>
-    <td>${transactions.product_id}</td>
-    <td>${transactions.quantity}</td>
-	<td>${transactions.value}</td>
-	<td>${transactions.dateandtime}</td>
+    <td>${transaction.id}</td>
+    <td>${transaction.store_id}</td>
+    <td>${transaction.product_id}</td>
+    <td>${transaction.quantity}</td>
+	<td>${transaction.value}</td>
+	<td>${transaction.datetime}</td>
   </tr>
 </table>
 </body>

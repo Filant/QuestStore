@@ -5,10 +5,16 @@
  */
 package ru.feel.queststore.controllers;
 
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +26,7 @@ import ru.feel.queststore.service.TransactionService;
  *
  * @author Anton
  */
-@Controller
+@Controller("/transaction")
 public class TransactionController {
 	private TransactionService transactionService;
 	
@@ -30,14 +36,7 @@ public class TransactionController {
 		this.transactionService = transactionService;
 	}
 	
-	@RequestMapping(value = "transactions", method = RequestMethod.GET)
-	public String listTransaction(Model model){
-		model.addAttribute("transaction", new Transaction());
-		model.addAttribute("listTransaction", this.transactionService.listTransaction());
-		return "transactions";
-	}
-	
-	@RequestMapping(value = "transactions/add", method = RequestMethod.POST)
+	@RequestMapping(value = "/transactions/add", method = RequestMethod.POST)
 	public String addTransaction(@ModelAttribute("transaction") Transaction transaction){
 		if(transaction.getId() == 0){
 			this.transactionService.addTransaction(transaction);
@@ -48,19 +47,19 @@ public class TransactionController {
 		return "redirect:/transactions";
 	}
 	
-	@RequestMapping("/remove/{id}")
+	@RequestMapping("/removeTransaction/{id}")
 	public String removeTransaction(@PathVariable("id") int id){
 		this.transactionService.removeTransaction(id);
 		
 		return "redirect:/transactions";
 	}
 	
-	@RequestMapping("edit/{id}")
+	@RequestMapping("editTransaction/{id}")
 	public String editTransaction(@PathVariable("id") int id, Model model){
-		model.addAttribute("tarnsaction", this.transactionService.getTransactionById(id));
+		model.addAttribute("transaction", this.transactionService.getTransactionById(id));
 		model.addAttribute("listTransaction", this.transactionService.listTransaction());
 		
-		return "tarnsactions";
+		return "transactions";
 	}
 	
 	@RequestMapping("transactiondata/{id}")
@@ -68,6 +67,13 @@ public class TransactionController {
 		model.addAttribute("transaction", this.transactionService.getTransactionById(id));
 		
 		return "transactiondata";
+	}
+	
+	@RequestMapping(value = "transactions", method = RequestMethod.GET)
+	public String listTransaction(Model model){
+		model.addAttribute("transaction", new Transaction());
+		model.addAttribute("listTransaction", this.transactionService.listTransaction());
+		return "transactions";
 	}
 }
 

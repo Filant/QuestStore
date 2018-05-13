@@ -1,42 +1,70 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ru.feel.queststore.dao;
 
 import java.util.List;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Repository;
 import ru.feel.queststore.model.Store;
 
 /**
  *
- * @author Ростислав
+ * @author Anton
  */
+@Repository
 public class StoreImpl implements StoreDao{
+	
+	private static final Logger logger = LoggerFactory.getLogger(StoreImpl.class);
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 
 	@Override
 	public void addStore(Store store) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(store);
+		logger.info("Store successfuly added: " + store);
 	}
 
 	@Override
 	public void updateStore(Store store) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Session session = this.sessionFactory.getCurrentSession();
+		session.persist(store);
+		logger.info("Store successfuly update: " + store);
 	}
 
 	@Override
 	public void removeStore(int id) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Session session = this.sessionFactory.getCurrentSession();
+		Store store = (Store) session.load(Store.class, new Integer(id));
+		
+		if(store != null){
+			session.delete(store);
+			logger.info("Store successfuly deleted: " + store);
+		}
 	}
 
 	@Override
 	public Store getStoreById(int id) {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+		Session session = this.sessionFactory.getCurrentSession();
+		Store store = (Store) session.load(Store.class, new Integer(id));
+		
+		logger.info("Store successfuly loaded: " + store);
+		return store;
 	}
 
 	@Override
 	public List<Store> listStores() {
-		throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-	}
-    
+		Session session = this.sessionFactory.getCurrentSession();
+		List<Store> list = session.createQuery("from Store").list();
+		
+		for(Store store: list){
+			logger.info("Store info: " + store);
+		}
+		return list;
+	}   
 }

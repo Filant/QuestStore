@@ -14,7 +14,7 @@ import ru.feel.queststore.model.Product;
  */
 public interface ProductDao {
     public void addProduct(Product prodcut);
-    public void updatePRoduct(Product prodcut);
+    public void updateProduct(Product prodcut);
     public void removeProduct(int id);
     public Product getProductById(int id);
     public List<Product> listProducts();

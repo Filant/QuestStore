@@ -5,6 +5,9 @@
  */
 package ru.feel.queststore.model;
 
+
+
+import java.util.Date;
 import javax.persistence.*;
 /**
  *
@@ -25,8 +28,9 @@ public class Transaction {
     private int quantity;
     @Column(name = "VALUE")
     private int value;
-    @Column(name = "DATEANDTIME")
-    private String datetime;
+	@Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "DATEANDTIME", nullable = true, insertable = false,updatable = true)
+    private Date datetime;
 
     public int getId() {
         return id;
@@ -68,11 +72,11 @@ public class Transaction {
         this.value = value;
     }
 
-    public String getDatetime() {
+    public Date getDatetime() {
         return datetime;
     }
 
-    public void setDatetime(String datetime) {
+    public void setDatetime(Date datetime) {
         this.datetime = datetime;
     }
 
