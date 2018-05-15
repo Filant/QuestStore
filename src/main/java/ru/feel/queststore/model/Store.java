@@ -8,17 +8,27 @@ package ru.feel.queststore.model;
 import javax.persistence.*;
 /**
  *
- * @author Ростислав
+ * @author Anton
  */
 @Entity
 @Table(name = "STORE")
 public class Store {
     @Id
-    @Column(name = "ID")
+    @Column(name = "ID", insertable = false, nullable = false, updatable = true)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    @Column(name = "ADRES")
+    @Column(name = "ADDRESS")
     private String address;
+	@Column(name = "NAME")
+	private String name;
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 
     public int getId() {
         return id;
@@ -35,5 +45,11 @@ public class Store {
     public void setAddress(String address) {
         this.address = address;
     }
-    
+
+	@Override
+	public String toString() {
+		return "Store{" + "id=" + id + ", address=" + address + ", name=" + name + '}';
+	}
+
+	
 }

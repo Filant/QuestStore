@@ -1,3 +1,4 @@
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
@@ -47,7 +48,7 @@
     </style>
 </head>
 <body>
-<a href="../../index.jsp">Back to main menu</a>
+<a href="../../QuestStore/index.jsp">Back to main menu</a>
 
 <br/>
 <br/>
@@ -69,13 +70,14 @@
         <c:forEach items="${listTransaction}" var="transaction">
             <tr>
                 <td>${transaction.id}</td>
-                <td>${transaction.store_id}</td>
+                <td><a href="transactiondata/${transaction.id}" target="_blank">${transaction.store_id}</a></td>
                 <td>${transaction.product_id}</td>
                 <td>${transaction.quantity}</td>
 				<td>${transaction.value}</td>
 				<td>${transaction.datetime}</td>
-                <td><a href="<c:url value='/edit/${transaction.id}'/>">Edit</a></td>
-                <td><a href="<c:url value='/remove/${transaction.id}'/>">Delete</a></td>
+                <td><a href="<c:url value='/editTransaction/${transaction.id}'/>">Edit</a></td>
+                <td><a href="<c:url value='/removeTransaction/${transaction.id}'/>">Delete</a></td>
+
             </tr>
         </c:forEach>
     </table>
@@ -88,7 +90,7 @@
 
 <form:form action="${addAction}" commandName="transaction">
     <table>
-        <c:if test="${!empty transaction.store_id}">
+        <c:if test="${!empty transaction.id}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -141,23 +143,29 @@
                 <form:input path="value"/>
             </td>
         </tr>
-		 <tr>
-            <td>
-                <form:label path="datetime">
-                    <spring:message text="Datetime"/>
-                </form:label>
-            </td>
-            <td>
-                <form:input path="datetime"/>
-            </td>
-        </tr>
+		 <c:if test="${!empty transaction.id}">
+            <tr>
+                <td>
+                    <form:label path="datetime">
+                        <spring:message text="Datetime"/>
+                    </form:label>
+                </td>
+                <td>
+                    <form:input path="datetime" readonly="true" size="8" disabled="true"/>
+                    <form:hidden path="datetime"/>
+                </td>
+            </tr>
+        </c:if>
+				
         <tr>
             <td colspan="2">
-                <c:if test="${!empty transactions.product_id}">
+
+                <c:if test="${!empty transaction.id}">
                     <input type="submit"
                            value="<spring:message text="Edit Transaction"/>"/>
                 </c:if>
-                <c:if test="${empty transactions.product_id}">
+                <c:if test="${empty transaction.id}">
+
                     <input type="submit"
                            value="<spring:message text="Add Transaction"/>"/>
                 </c:if>

@@ -22,14 +22,19 @@
         <property name="username" value="root"/>
         <property name="password" value="12345"/>
     </bean>
+	
 
-    <!-- Hibernate 4 SessionFactory Bean definition -->
+	<!-- Hibernate 4 SessionFactory Bean definition -->
     <bean id="hibernate4AnnotatedSessionFactory"
           class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="annotatedClasses">
             <list>
-                <value>ru.feel.queststore.model.Transaction</value>
+
+				<value>ru.feel.queststore.model.Store</value>
+				<value>ru.feel.queststore.model.Product</value>
+				<value>ru.feel.queststore.model.Transaction</value>
+   
             </list>
         </property>
         <property name="hibernateProperties">
@@ -49,14 +54,32 @@
     <bean id="transactionService" class="ru.feel.queststore.service.TransactionServImpl">
         <property name="transactionDao" ref="transactionDao"/>
     </bean>
-
-    <context:component-scan base-package="ru.feel.queststore"/>
+	
+	<!--ProductDao and ProdcutService-->
+	<bean id="productDao" class="ru.feel.queststore.dao.ProductImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>		
+	</bean>
+	
+	<bean id="productService" class="ru.feel.queststore.service.ProductServImpl">
+		<property name="productDao" ref="productDao"/>
+	</bean>
+	
+	
+	<!--StoreDao and StoreService-->
+	<bean id="storeDao" class="ru.feel.queststore.dao.StoreImpl">
+		<property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
+	</bean>
+	
+	<bean id="storeService" class="ru.feel.queststore.service.StoreServImpl">
+		<property name="storeDao" ref="storeDao"/>
+	</bean>
 
     <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <bean id="transactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
         <property name="sessionFactory" ref="hibernate4AnnotatedSessionFactory"/>
     </bean>
+		
 
     <mvc:default-servlet-handler/>
     <mvc:annotation-driven/>

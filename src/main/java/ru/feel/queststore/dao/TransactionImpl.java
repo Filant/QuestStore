@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ru.feel.queststore.dao;
 
 import java.util.List;
@@ -27,7 +23,6 @@ public class TransactionImpl implements TransactionDao{
 		this.sessionFactory = sessionFactory;
 	}
 
-
 	@Override
 	public void addTransaction(Transaction transaction) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -39,12 +34,14 @@ public class TransactionImpl implements TransactionDao{
 	public void updateTransaction(Transaction transaction) {
 		Session session = this.sessionFactory.getCurrentSession();
 		session.update(transaction);
-		logger.info("Transaction successfuly update: " + transaction);	}
+		logger.info("Transaction successfuly update: " + transaction);	
+	}
 
 	@Override
 	public void removeTransaction(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Transaction transaction = (Transaction) session.load(Transaction.class, new Integer(id));
+		
 		if(transaction != null){
 			session.delete(transaction);
 			logger.info("Transaction successfuly deleted: " + transaction);
@@ -63,12 +60,11 @@ public class TransactionImpl implements TransactionDao{
 	@SuppressWarnings("unchecked")
 	public List<Transaction> listTransaction() {
 		Session session = this.sessionFactory.getCurrentSession();
-		List<Transaction> listTrans = session.createQuery("from queststoredb.transactions").list();
+		List<Transaction> listTransaction = session.createQuery("from Transaction").list();
 		
-		for(Transaction transaction : listTrans){
+		for(Transaction transaction : listTransaction){
 			logger.info("Transaction info: " + transaction);
 		}
-		return listTrans;
+		return listTransaction;
 	}
-    
 }

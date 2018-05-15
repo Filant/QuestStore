@@ -14,9 +14,15 @@ import ru.feel.queststore.model.Store;
  */
 public interface StoreDao {
 	public void addStore(Store store);
+	
 	public void updateStore(Store store);
+	
 	public void removeStore(int id);
+	
 	public Store getStoreById(int id);
+	
 	public List<Store> listStores();
+	
+	public List<Store> listStoresGroupedBy(String field,String groupBy);
     
 }

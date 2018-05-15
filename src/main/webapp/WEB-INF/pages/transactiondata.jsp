@@ -59,6 +59,8 @@
     <th width="120">Quantity</th>
 	<th width="120">Value</th>
 	<th width="120">Datetime</th>
+    <th width="120">Value</th>
+    <th width="120">Datetime</th>
   </tr>
   <tr>
     <td>${transaction.id}</td>
@@ -66,7 +68,7 @@
     <td>${transaction.product_id}</td>
     <td>${transaction.quantity}</td>
 	<td>${transaction.value}</td>
-	<td>${transaction.dateandtime}</td>
+	<td>${transaction.datetime}</td>
   </tr>
 </table>
 </body>
