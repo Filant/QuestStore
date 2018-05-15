@@ -95,6 +95,7 @@
 <c:url var="addAction" value="/stores/add"/>
 
 <form:form action="${addAction}" commandName="store">
+	
     <table>
         <c:if test="${!empty store.address}">
             <tr>

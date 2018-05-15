@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.feel.queststore.model.Store;
 import ru.feel.queststore.service.StoreService;
 
@@ -65,6 +66,14 @@ public class StoreController {
 		model.addAttribute("listStore", this.storeService.listStore());
 		
 		return "stores";
+	}
+	
+	@RequestMapping(value = "storesbyname", method = RequestMethod.GET)
+	public String listStoresByName(@RequestParam("name") String name, Model model){
+		model.addAttribute("store", new Store());
+		model.addAttribute("listStore", this.storeService.listStore());
+		
+		return "storesbyname";
 	}
 	
 

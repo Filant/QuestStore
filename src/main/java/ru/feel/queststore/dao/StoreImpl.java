@@ -71,10 +71,10 @@ public class StoreImpl implements StoreDao{
 	}
 
 	@Override
-	public List<Store> listStoresGroupedBy(String field, String groupBy) {
+	public List<Store> listStoresGroupedByName(String name) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Criteria criteria = session.createCriteria(Store.class);
-		criteria.add(Restrictions.eq(field, groupBy));		
+		criteria.add(Restrictions.eq("name", name));		
 		List<Store> list = criteria.list();	
 		
 		return list;

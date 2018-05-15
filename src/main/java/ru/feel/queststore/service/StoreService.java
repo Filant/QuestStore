@@ -19,5 +19,5 @@ public interface StoreService {
 	
 	public List<Store> listStore();
 	
-	public List<Store> listStoresGroupedBy(String field, String groupBy);
+	public List<Store> listStoresGroupedByName(String name);
 }

@@ -23,6 +23,6 @@ public interface StoreDao {
 	
 	public List<Store> listStores();
 	
-	public List<Store> listStoresGroupedBy(String field,String groupBy);
+	public List<Store> listStoresGroupedByName(String name);
     
 }

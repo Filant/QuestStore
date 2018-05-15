@@ -50,7 +50,8 @@ public class StoreServImpl implements StoreService{
 	}
 
 	@Override
-	public List<Store> listStoresGroupedBy(String field, String groupBy) {
-		return this.storeDao.listStoresGroupedBy(field, groupBy);
+	@Transactional
+	public List<Store> listStoresGroupedByName(String name) {
+		return this.storeDao.listStoresGroupedByName(name);
 	}		
 }

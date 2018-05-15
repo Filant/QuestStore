@@ -22,6 +22,5 @@ public interface TransactionDao {
 	public Transaction getTransById(int id);
 
 	public List<Transaction> listTransaction();
-
-    
+   
 }

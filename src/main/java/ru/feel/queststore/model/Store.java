@@ -5,6 +5,7 @@
  */
 package ru.feel.queststore.model;
 
+import java.util.List;
 import javax.persistence.*;
 /**
  *
@@ -21,7 +22,7 @@ public class Store {
     private String address;
 	@Column(name = "NAME")
 	private String name;
-
+	
 	public String getName() {
 		return name;
 	}

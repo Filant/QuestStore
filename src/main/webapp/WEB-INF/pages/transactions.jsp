@@ -1,8 +1,7 @@
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <%@ page session="false" %>
 <html>
 <head>
@@ -90,7 +89,7 @@
 
 <form:form action="${addAction}" commandName="transaction">
     <table>
-        <c:if test="${!empty transaction.id}">
+        <c:if test="${!empty transaction.store_id}">
             <tr>
                 <td>
                     <form:label path="id">
@@ -143,28 +142,16 @@
                 <form:input path="value"/>
             </td>
         </tr>
-		 <c:if test="${!empty transaction.id}">
-            <tr>
-                <td>
-                    <form:label path="datetime">
-                        <spring:message text="Datetime"/>
-                    </form:label>
-                </td>
-                <td>
-                    <form:input path="datetime" readonly="true" size="8" disabled="true"/>
-                    <form:hidden path="datetime"/>
-                </td>
-            </tr>
-        </c:if>
+		 
 				
         <tr>
             <td colspan="2">
 
-                <c:if test="${!empty transaction.id}">
+                <c:if test="${!empty transaction.quantity}">
                     <input type="submit"
                            value="<spring:message text="Edit Transaction"/>"/>
                 </c:if>
-                <c:if test="${empty transaction.id}">
+                <c:if test="${empty transaction.quantity}">
 
                     <input type="submit"
                            value="<spring:message text="Add Transaction"/>"/>

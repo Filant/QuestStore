@@ -14,7 +14,7 @@ import javax.persistence.*;
  * @author Anton
  */
 @Entity
-@Table(name = "transactions")
+@Table(name = "TRANSACTIONS")
 public class Transaction {
     @Id
     @Column(name = "ID")
@@ -28,9 +28,31 @@ public class Transaction {
     private int quantity;
     @Column(name = "VALUE")
     private int value;
-	@Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "DATEANDTIME", nullable = true, insertable = false,updatable = true)
+	@Temporal(TemporalType.DATE)
+    @Column(name = "DATEANDTIME", nullable = true, insertable = false, updatable = false)
     private Date datetime;
+//	@ManyToOne
+//	@JoinColumn(name = "store_id")
+//	private Store store;
+//	@ManyToOne
+//	@JoinColumn(name = "product_id")
+//	private Product product;
+//
+//	public Store getStore() {
+//		return store;
+//	}
+//
+//	public void setStore(Store store) {
+//		this.store = store;
+//	}
+//
+//	public Product getProduct() {
+//		return product;
+//	}
+//
+//	public void setProduct(Product product) {
+//		this.product = product;
+//	}
 
     public int getId() {
         return id;
